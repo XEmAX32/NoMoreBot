@@ -1,5 +1,5 @@
 #Config for the plugin
 #Here put the max players per ip
 
-MaxPlayersPerIp: 
+MaxPlayersPerIp: 5
 
