@@ -1,6 +1,6 @@
 name: NoMoreBot
 version: 1.0
-main:
+main: NoMoreBot\
 api: 1.10.0
 load: POSTWORLD
 description: an easy anti bot plugin
