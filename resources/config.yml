@@ -3,6 +3,3 @@
 
 MaxPlayersPerIp: 
 
-#Here put the time for the ban of the ip in seconds the default is 2 month
-
-BanIpTime: 5184000
