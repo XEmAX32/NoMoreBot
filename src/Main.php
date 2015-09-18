@@ -1,4 +1,4 @@
-<php?
+<?php
 namespace NoMoreBot
 
 use pocketmine\plugin\PluginBase;
@@ -23,6 +23,7 @@ $this->getLogger()->info(TextFormat::BLUE . " [NoMoreBot disabled]");
 public function onJoin(PlayerJoinEvent $e){
 $player = $e->getPlayer();
 $ip = $player->getIp();
+$mpi = $this->getConfig()->get("Max-Players-Ip");
 foreach($this->getServer()->getOnlinePlayers() as $ps){
 $ps->sendMessage(TextFormat::BLUE . "[NoMoreBot] Bot attack detected!");
 
