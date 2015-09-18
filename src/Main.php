@@ -20,4 +20,9 @@ public function onDisable(){
 $this->getLogger()->info(TextFormat::BLUE . " [NoMoreBot disabled]");
 }
 
-public function 
+public function onJoin(PlayerJoinEvent $e){
+$player = $e->getPlayer();
+$ip = $player->getIp();
+foreach($this->getServer()->getOnlinePlayers() as $ps){
+$ps->sendMessage(TextFormat::BLUE . "[NoMoreBot] Bot attack detected!");
+
