@@ -10,6 +10,7 @@ use pockermine\utils\TextFormat;
 class Main extends PluginBase implements Listener{
 
 private $whitelist == false;
+private $IPs = [];
 
 public funtion onEnable(){
 $this->getServer->getPluginManager()->registerEvents($this, $this);
@@ -25,7 +26,7 @@ $wl->save();
 
 public function onJoin(PlayerJoinEvent $e){
 $player = $e->getPlayer();
-$ip = $player->getIp();
+$ip = $player->getAdress();
 $name = $player->getName();
 if(!$wl->exist($name) && $this->whitelist === false){
   $this->getServer()->getScheduler()->scheduleRepeatingTask(new Timer($this), 120);
@@ -39,9 +40,12 @@ if(!$wl->exist($name) && $this->whitelist === false){
 public function onPreSpawn(PlayerPreSpawnEvent $e){
 $player = $e->getPlayer();
 $name = $player->getName();
+$ip = $player->getAdress();
+isset($this->IPs[$ip]) ? $this->IPs[$ip] += 1 : $this->IPs[$ip] = 1;
 if(!$wl->exist($name) && $this->whitelist === true){
-  $player->Kick();//settare messaggio di kick
-}
+  $player->SetKickMessage("[NMB] Bot Attack Detected");
+  $player->Kick()"[NMB] Bot Attack Detected");
+  }
 }
 
 public function WLEnabler(){
@@ -57,5 +61,20 @@ foreach($this->getServer()->getOnlinePlayers() as $ps){
   $this->whitelist == false;
   }
 }
+
+public function onQuit(PlayerQuitEvent $e){
+$ip = $e->getPlayer()->getAdress();
+if(isset($this->IPs[$ip])){
+  $this->IPs[$ip] -= 1;
+  }
 }
 
+public function onRun($tick){
+  $this->plugin->sec -= 1;
+  $player = $e->getPlayer();
+    if($this->plugin->sec => 0){
+      $wl->set($name);
+      $player->sendMessage(TextFormat::BLUE . "[NoMoreBot] You Have Been Added On Whitelist");
+    }
+  }  
+}
