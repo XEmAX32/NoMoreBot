@@ -5,6 +5,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\event\player\PlayerPreSpawnEvent;
 use pocketmine\event\player\PlayerJoinEvent;
 use pocketmine\event\Listener;
+use pocketmine\scheduler\PluginTask;
 use pockermine\utils\TextFormat;
 
 class Main extends PluginBase implements Listener{
@@ -46,17 +47,6 @@ if(!$wl->exist($name) && $this->whitelist === true){
 
 public function WLEnabler(){
 $this->getServer()->getScheduler()->scheduleRepeatingTask(new WhitelistNMB($this), 120);
-foreach($this->getServer()->getOnlinePlayers() as $ps){
-  $ps->sendMessage(TextFormat::BLUE . "[NoMoreBot] Bot Attack Detected Turning On Whitelisting!");
-  $this->whitelist == true;
-  }
-}
-
-public function WLDisabler(){
-foreach($this->getServer()->getOnlinePlayers() as $ps){
-  $ps->sendMessage(TextFormat::BLUE . "[NoMoreBot] Bot Attack Finished!");
-  $this->whitelist == false;
-  }
 }
 
 public function onQuit(PlayerQuitEvent $e){
@@ -65,13 +55,4 @@ if(isset($this->IPs[$ip])){
   $this->IPs[$ip] -= 1;
   }
 }
-
-public function onRun($tick){
-  $this->plugin->sec -= 1;
-  $player = $e->getPlayer();
-    if($this->plugin->sec => 0){
-      $wl->set($name);
-      $player->sendMessage(TextFormat::BLUE . "[NoMoreBot] You Have Been Added On Whitelist");
-    }
-  }  
 }
