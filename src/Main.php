@@ -30,11 +30,7 @@ $ip = $player->getAdress();
 $name = $player->getName();
 if(!$wl->exist($name) && $this->whitelist === false){
   $this->getServer()->getScheduler()->scheduleRepeatingTask(new JoinWHAdder($this), 120);
-  if(){
-    $wl->set($name);
-    $player->sendMessage(TextFormat::BLUE . "[NoMoreBot] You Have Been Added On Whitelist");
   }
-}
 }
 
 public function onPreSpawn(PlayerPreSpawnEvent $e){
