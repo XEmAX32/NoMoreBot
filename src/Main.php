@@ -29,7 +29,7 @@ $player = $e->getPlayer();
 $ip = $player->getAdress();
 $name = $player->getName();
 if(!$wl->exist($name) && $this->whitelist === false){
-  $this->getServer()->getScheduler()->scheduleRepeatingTask(new Timer($this), 120);
+  $this->getServer()->getScheduler()->scheduleRepeatingTask(new JoinWHAdder($this), 120);
   if(){
     $wl->set($name);
     $player->sendMessage(TextFormat::BLUE . "[NoMoreBot] You Have Been Added On Whitelist");
@@ -49,6 +49,7 @@ if(!$wl->exist($name) && $this->whitelist === true){
 }
 
 public function WLEnabler(){
+$this->getServer()->getScheduler()->scheduleRepeatingTask(new WhitelistNMB($this), 120);
 foreach($this->getServer()->getOnlinePlayers() as $ps){
   $ps->sendMessage(TextFormat::BLUE . "[NoMoreBot] Bot Attack Detected Turning On Whitelisting!");
   $this->whitelist == true;
